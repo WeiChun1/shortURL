@@ -20,11 +20,11 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-router.get('/:shorturl', (req, res) => {
-  const { url } = req.params.shorturl
+router.get('/:shortenURL', (req, res) => {
+  const { shortenURL } = req.params
 
   //從資料庫找尋相對應的短網址，如果有就連線到原始網址，否則跳出錯誤頁面
-  shortURL.findOne({ url })
+  shortURL.findOne({ shortenURL })
     .then(data => {
       if (!data) {
         res.render('error')
@@ -34,6 +34,7 @@ router.get('/:shorturl', (req, res) => {
     })
     .catch(error => console.log(error))
 })
+
 
 module.exports = router
 
